@@ -3,8 +3,11 @@
 # Set working directory
 WORKDIR /app
 
-# Copy your Rasa project
-COPY . /app
+# Copy your Rasa project files
+COPY . .
 
-# Use shell form of CMD to allow environment variable substitution
-CMD rasa run --enable-api --cors "*" --debug --port ${PORT:-5005}
+# Override the default entrypoint
+ENTRYPOINT []
+
+# Use a shell script to ensure proper variable expansion
+CMD /bin/bash -c "rasa run --enable-api --cors '*' --port $PORT"
