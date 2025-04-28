@@ -542,6 +542,38 @@
                 processMessage(message);
             }
         }
+        // Add this function to your JavaScript
+    async function sendToRasa(message) {
+    try {
+        const response = await fetch('https://rasa-test-failure-chatbot.onrender.com/webhooks/rest/webhook', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            sender: 'user',
+            message: message
+        }),
+        });
+        
+        const data = await response.json();
+        
+        // Process Rasa responses
+        if (data && data.length > 0) {
+        data.forEach(msg => {
+            if (msg.text) {
+            replyWithBotMessage(msg.text);
+            }
+        });
+        } else {
+        // Fallback if no response from Rasa
+        replyWithBotMessage("I'm having trouble processing that. Please try again.");
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        replyWithBotMessage("Sorry, I'm having trouble connecting to my brain. Please try again later.");
+    }
+    }
 
         function processMessage(message) {
             const lowerMsg = message.toLowerCase();
@@ -583,6 +615,8 @@
                     }
                 }
             }, 500);
+
+            sendToRasa(message);
         }
 
         function handleCDCARMRequest(message) {
