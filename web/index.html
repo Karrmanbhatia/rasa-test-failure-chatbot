@@ -608,7 +608,7 @@
         function generateCDCARMUrlFromParams(withReport, owner) {
             const baseUrl = "https://cdcarm.win.ansys.com/Reports/Unified/ErrorReport/Product/90";
             const status = withReport ? "NOT%20NULL" : "NULL";
-            let url = `${baseUrl}?applicationId=-1&platformId=1&releaseId=217&allPackages=True&filterCollection=MatchType%3DAll%26Filter0%3DType%3AARM.WebFilters.TestResults.Filters.InvestigationStatusFilter%2COperator%3AEQUAL%2CValue%3A${status}`;
+            let url = `${baseUrl}?applicationId=-1&platformId=1&releaseId=252&allPackages=True&filterCollection=MatchType%3DAll%26Filter0%3DType%3AARM.WebFilters.TestResults.Filters.InvestigationStatusFilter%2COperator%3AEQUAL%2CValue%3A${status}`;
             
             if (owner) {
                 url += `%26Filter1%3DType%3AARM.WebFilters.TestResults.Filters.OwnerFilter%2COperator%3AEQUAL%2CValue%3A${owner}`;
