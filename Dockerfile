@@ -6,5 +6,5 @@ WORKDIR /app
 # Copy your Rasa project
 COPY . /app
 
-# Use the PORT environment variable provided by Render
+# Use shell form of CMD to allow environment variable substitution
 CMD rasa run --enable-api --cors "*" --debug --port ${PORT:-5005}
