@@ -38,4 +38,4 @@ COPY . .
 RUN rasa train || echo "Rasa training failed, but continuing"
 
 # Default command to run Rasa server
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "--debug", "--port", "5005"]
+CMD rasa run --enable-api --cors "*" --debug --port $PORT
